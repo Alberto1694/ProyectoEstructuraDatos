@@ -9,7 +9,25 @@
 
 ---
 
-# Introducción
+## Plan de proyecto:
+**María Morales:** encargada de proponer las clases principales (evento, participante, partido y equipo) con los atributos y métodos públicos/privados, realizar diagrama de clases y ordenar los paquetes que componen el proyecto basado en el patrón MVC.
+
+**Derek Vega:** encargado de realizar el diseño de menú e interfaces de usuario, tanto el de administrador como el de espectador.
+
+**Alexander Abarca:** responsable de los componentes visuales y librerías, se encarga de especificar y explicar brevemente los componentes y librerías a utilizar durante la ejecución del proyecto.
+
+**Alberto Alfaro:** encargado de las funcionalidades correspondientes a pilas y colas, realiza la parte estructural del avance, diseña las clases de: ListaEventos, ListaParticipantes, ColaDinamica, PilaDinamica, GrafoEquipos, ArbolClasificacion, Nodo y NodoDoble. Y por ultimo, redacta brevemente la funcionalidad de pilas y colas.
+
+---
+
+## Diagrama de clases:
+A continuación se presenta una imagen del diagrama de clases del sistema de gestión de eventos deportivos.
+
+![Diagrama](Diagrama de clases.jpeg)
+
+---
+
+# Diseño de menú e interfaces de usuario
 
 Este proyecto corresponde al desarrollo de una aplicación de escritorio en **Java** utilizando **Swing**, cuyo objetivo es gestionar y visualizar información relacionada con eventos deportivos.
 
@@ -19,7 +37,7 @@ La aplicación cuenta con diferentes vistas que organizan las funciones del sist
 
 ---
 
-# Descripción de las Vistas
+# Descripción de las Vistas 
 
 ## VistaLogin
 

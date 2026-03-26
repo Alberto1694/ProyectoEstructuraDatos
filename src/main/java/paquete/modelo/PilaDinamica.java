@@ -15,15 +15,71 @@ El resultado más reciente será el primero en mostrarse.
 Debe explicar por qué son las estructuras adecuadas.
 */
 public class PilaDinamica {
+
     private Nodo tope;
 
+    // Constructor
+    public PilaDinamica() {
+        tope = null;
+    }
+
+    // Apilar
     public void apilar(Partido p) {
+
+        Nodo nuevo = new Nodo(p);
+
+        nuevo.setSiguiente(tope);
+
+        tope = nuevo;
     }
 
-    public void desapilar() {
+    // Desapilar
+    public Partido desapilar() {
+
+        if (estaVacia()) {
+            return null;
+        }
+
+        Partido dato = (Partido) tope.getDato();
+
+        tope = tope.getSiguiente();
+
+        return dato;
     }
 
+    // Ver tope
+    public Partido verTope() {
+
+        if (estaVacia()) {
+            return null;
+        }
+
+        return (Partido) tope.getDato();
+    }
+
+    // Verificar si está vacía
     public boolean estaVacia() {
-        return false;
-    }    
+
+        if (tope == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Contar elementos
+    public int contar() {
+
+        int contador = 0;
+
+        Nodo actual = tope;
+
+        while (actual != null) {
+            contador++;
+            actual = actual.getSiguiente();
+        }
+
+        return contador;
+    }
+
 }

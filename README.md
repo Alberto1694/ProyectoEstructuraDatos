@@ -27,6 +27,17 @@ A continuación se presenta una imagen del diagrama de clases del sistema de ges
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
 # Diseño de menú e interfaces de usuario
 
 Este proyecto corresponde al desarrollo de una aplicación de escritorio en **Java** utilizando **Swing**, cuyo objetivo es gestionar y visualizar información relacionada con eventos deportivos.
@@ -109,7 +120,6 @@ La **VistaResultados** permite registrar y consultar los resultados de los parti
 Esta información se utiliza posteriormente para calcular la clasificación del torneo.
 
 ---
-
 ## VistaClasificacion
 
 La **VistaClasificacion** muestra la tabla de posiciones de los participantes en el torneo.
@@ -238,3 +248,116 @@ Esta librería permitirá implementar la **persistencia de datos**, permitiendo 
 ## java.util.*
 
 La librería **java.util** se utilizará para diversas utilidades del sistema, como manejo de colecciones, fechas y otras funcionalidades auxiliares necesarias para el desarrollo del proyecto.
+
+Imagenes del prototipo
+
+
+
+VistaClasificaciom
+
+<img width="819" height="635" alt="image" src="https://github.com/user-attachments/assets/df80b9c3-4dbd-4d00-916f-6844d00c75ac" />
+
+VistaEspectador
+
+<img width="449" height="464" alt="image" src="https://github.com/user-attachments/assets/64faf279-bb92-403a-8ce4-21d9aa68bfb5" />
+
+VistaEventos
+
+<img width="760" height="736" alt="image" src="https://github.com/user-attachments/assets/9f211eb6-823b-4284-9542-584b34d9930e" />
+
+VistaGrafo
+<img width="762" height="595" alt="image" src="https://github.com/user-attachments/assets/ffb877ca-96e1-4ae9-83da-a3c19abf5a7d" />
+
+VistaMenuAdmin
+
+<img width="674" height="667" alt="image" src="https://github.com/user-attachments/assets/e51221a9-5e27-4f66-a5ae-f61241dd5c7f" />
+
+
+VistaParticipantes
+
+<img width="766" height="735" alt="image" src="https://github.com/user-attachments/assets/f276deb4-0354-4a3f-98cb-f54e75124b14" />
+
+
+VistaPartidos
+
+<img width="774" height="722" alt="image" src="https://github.com/user-attachments/assets/77fb97e1-40dd-46cf-9687-fc01512a1ff5" />
+
+
+VistaPrincipal
+
+<img width="589" height="478" alt="image" src="https://github.com/user-attachments/assets/1e38323e-4c43-4529-923b-ac976ad57366" />
+
+
+
+VistaResultados
+
+<img width="772" height="686" alt="image" src="https://github.com/user-attachments/assets/3451e4df-61d2-4d0d-82ad-f991efae2a58" />
+
+
+
+
+
+
+
+Segundo Avance del Proyecto
+
+En este segundo avance se continuó con el desarrollo del sistema, agregando un prototipo funcional de la aplicación.
+
+Este prototipo permite visualizar la estructura general del sistema y la navegación entre las diferentes vistas del programa. Aunque algunas funcionalidades aún no están completamente implementadas, el sistema ya cuenta con la estructura básica de interacción entre las distintas pantallas y módulos.
+
+El objetivo de este avance fue demostrar el funcionamiento inicial del sistema y validar la organización del proyecto antes de implementar completamente las estructuras de datos y las funcionalidades finales.
+
+Prototipo Funcional
+
+En este avance se desarrolló un prototipo funcional utilizando Java Swing, que permite simular la interacción con el sistema mediante diferentes pantallas, tambien se colocan datos para su funcionamiemto y prueba como un test.
+
+El prototipo incluye:
+
+Pantalla de inicio de sesión
+Menú principal del sistema
+Menú de administrador
+Menú de espectador
+Acceso a las diferentes vistas del sistema
+
+El sistema permite navegar entre las diferentes pantallas utilizando botones, lo que facilita visualizar cómo funcionará el programa una vez que todas las funcionalidades estén implementadas.
+
+Diseño de menú e interfaces de usuario
+
+El sistema fue desarrollado como una aplicación de escritorio en Java utilizando Swing.
+
+Las interfaces fueron diseñadas para permitir una navegación clara entre los diferentes módulos del sistema, separando las funcionalidades para administradores y espectadores.
+
+La aplicación permite gestionar y visualizar información relacionada con:
+
+Participantes
+Partidos
+Resultados
+Clasificación
+Relaciones entre equipos mediante grafos
+
+Tambien se le colocaron datos para poder gestionar la funcionalidad de nuestro proyecto, en las siguientes imagenes pueden observar como se ve la interfaz ya con datos insertados. 
+
+Imagenen con datos colocados: 
+
+Partidos
+<img width="806" height="739" alt="image" src="https://github.com/user-attachments/assets/2f0df8d1-a0ee-4469-9cc7-95532eb9ed88" />
+
+Participantes
+<img width="813" height="722" alt="image" src="https://github.com/user-attachments/assets/19f819b7-332b-4a18-b699-2f2dbff8c14e" />
+
+Clasificacion general
+<img width="790" height="525" alt="image" src="https://github.com/user-attachments/assets/f659e92d-e5a0-4ea4-a425-8c1a5d3f0276" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+

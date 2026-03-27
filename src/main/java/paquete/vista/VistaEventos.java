@@ -1,17 +1,24 @@
 package paquete.vista;
+import paquete.controlador.ControladorEvento;
+import paquete.modelo.Evento;
+import paquete.modelo.Nodo;
 
 import javax.swing.table.DefaultTableModel;
 
 public class VistaEventos extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEventos.class.getName());
+private ControladorEvento controlador;    
+   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEventos.class.getName());
+
 
 public VistaEventos() {
         initComponents();
-        cargarDatos();
+        controlador = new ControladorEvento();
+        mostrarEventos();
+        //cargarDatos();
+        
     }
-    
-        private void cargarDatos() {
+    //Con datos quemados
+        /*private void cargarDatos() {
         DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
         model.setRowCount(0);
         model.addRow(new Object[]{"Torneo 1", "2026-04-05", "Estadio Nacional"});
@@ -22,7 +29,23 @@ public VistaEventos() {
         jTextField1.setText("Torneo 1");
         jTextField2.setText("2026-04-05");
         jTextField3.setText("Estadio Nacional");
-    }
+    }*/
+        private void mostrarEventos(){
+            DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
+            model.setRowCount(0);
+            
+            Nodo aux = controlador.getEventos();
+            
+            while (aux!= null) {
+                Evento e = (Evento) aux.getDato();
+                model.addRow(new Object[]{
+                e.getNombreEvento(),
+                e.getFecha(),
+                e.getUbicacion()
+            });
+            aux = aux.getSiguiente();
+            }
+        }
         
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -254,12 +277,20 @@ public VistaEventos() {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
-     
-
+     jTextField1.setText("");
+     jTextField2.setText("");
+     jTextField3.setText("");
     }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
     private void btnAgregarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEventoActionPerformed
-
+        String nombre = jTextField1.getText();
+        String fecha = jTextField2.getText();
+        String ubicacion = jTextField3.getText();
+        
+        Evento e = new Evento(1, nombre, fecha, ubicacion);
+        
+        controlador.agregarEvento(e);
+        mostrarEventos();
     }//GEN-LAST:event_btnAgregarEventoActionPerformed
 
     private void btnActualizarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEventoActionPerformed
@@ -267,12 +298,29 @@ public VistaEventos() {
     }//GEN-LAST:event_btnActualizarEventoActionPerformed
 
     private void btnEliminarEvento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvento1ActionPerformed
-    
+    int fila = TablaEventos.getSelectedRow();
+    if (fila == -1) {
+        System.out.println("Seleccione un evento");
+        return;
+    }
+    Nodo aux = controlador.getEventos();
+    int contador = 0;
+    while (aux != null) {
+        if (contador == fila) {
+            Evento e = (Evento) aux.getDato();
+            controlador.eliminarEvento(e.getIdEvento());
+            break;
+        }
+        aux = aux.getSiguiente();
+        contador++;
+    }
+    mostrarEventos();
     }//GEN-LAST:event_btnEliminarEvento1ActionPerformed
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         
         new VistaPrincipal().setVisible(true); 
+        this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 
  public static void main(String args[]) {

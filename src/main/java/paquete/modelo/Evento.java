@@ -19,8 +19,37 @@ public class Evento {
     private PilaDinamica pilaResultados;
 
     public Evento() {
+        listaParticipantes = new ListaParticipantes();
+        colaPartidos = new ColaDinamica();
+        pilaResultados = new PilaDinamica();
+    }
+    public Evento(int idEvento, String nombreEvento, String fecha, String ubicacion) {
+        this.idEvento = idEvento;
+        this.nombreEvento = nombreEvento;
+        this.fecha = fecha;
+        this.ubicacion = ubicacion;
+        this.listaParticipantes = new ListaParticipantes();
+        this.colaPartidos = new ColaDinamica();
+        this.pilaResultados = new PilaDinamica();
     }
 
+    public int getIdEvento() {
+        return idEvento;
+    }
+
+    public String getNombreEvento() {
+        return nombreEvento;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+        
     public void registrarEvento() {
         System.out.println("Evento registrado");
     }

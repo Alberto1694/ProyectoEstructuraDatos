@@ -12,7 +12,6 @@ package paquete.modelo;
 Se utilizará para almacenar resultados.
 Funcionará bajo principio LIFO.
 El resultado más reciente será el primero en mostrarse.
-Debe explicar por qué son las estructuras adecuadas.
 */
 public class PilaDinamica {
 

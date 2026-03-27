@@ -11,12 +11,49 @@ package paquete.modelo;
 public class ListaEventos {
     private Nodo inicio;
     private Nodo fin;
+    
+    public ListaEventos(){
+        inicio = null;
+        fin = null;
+    }
 
     public void agregar(Evento e) {
+        Nodo nuevo = new Nodo(e);
+        if (inicio==null) {
+            inicio=nuevo;
+            fin = nuevo;
+        } else {
+            fin.setSiguiente(nuevo);
+            fin = nuevo;
+        }
+    }
+    public Nodo getInicio(){
+        return inicio;
     }
 
-    public void eliminar() {
+    public void eliminar(int id) {
+    if (inicio == null) return;
+
+    if (((Evento)inicio.getDato()).getIdEvento() == id) {
+        inicio = inicio.getSiguiente();
+        if (inicio == null) fin = null;
+        return;
     }
+    Nodo actual = inicio;
+    Nodo anterior = null;
+    while (actual != null) {
+        Evento e = (Evento) actual.getDato();
+        if (e.getIdEvento() == id) {
+            anterior.setSiguiente(actual.getSiguiente());
+            if (actual == fin) {
+                fin = anterior;
+            }
+            return;
+        }
+        anterior = actual;
+        actual = actual.getSiguiente();
+    }
+}
 
     public boolean estaVacia() {
         return false;

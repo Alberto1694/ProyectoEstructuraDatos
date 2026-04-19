@@ -1,23 +1,23 @@
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\com\mycompany\proyectoestructuradatos\ProyectoEstructuraDatos.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\controlador\ControladorEvento.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\ArbolClasificacion.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\ColaDinamica.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\Equipo.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\Evento.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\GrafoEquipos.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\ListaEventos.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\ListaParticipantes.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\Nodo.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\NodoDoble.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\Participante.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\Partido.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\modelo\PilaDinamica.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaClasificacion.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaEspectador.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaEventos.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaGrafo.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaMenuAdmin.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaParticipantes.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaPartidos.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaPrincipal.java
-C:\Users\maria\OneDrive\Documentos\ProyectoEstructuraDatos\src\main\java\paquete\vista\VistaResultados.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/com/mycompany/proyectoestructuradatos/ProyectoEstructuraDatos.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/controlador/ControladorEvento.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/ArbolClasificacion.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/ColaDinamica.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/Equipo.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/Evento.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/GrafoEquipos.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/ListaEventos.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/ListaParticipantes.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/Nodo.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/NodoDoble.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/Participante.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/Partido.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/modelo/PilaDinamica.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaClasificacion.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaEspectador.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaEventos.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaGrafo.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaMenuAdmin.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaParticipantes.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaPartidos.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaPrincipal.java
+/Users/alberto/Documents/Curso viernes/Proyecto/ProyectoEstructuraDatos/src/main/java/paquete/vista/VistaResultados.java

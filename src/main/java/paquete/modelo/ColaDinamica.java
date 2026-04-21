@@ -17,13 +17,37 @@ public class ColaDinamica {
     private Nodo frente;
     private Nodo fin;
 
-    public void encolar(Partido p) {
+    public ColaDinamica() {
+        frente = null;
+        fin = null;
     }
 
-    public void desencolar() {
+    public void encolar(Partido p) {
+        Nodo nuevo = new Nodo(p);
+        if (frente == null) {
+            frente = nuevo;
+            fin = nuevo;
+        } else {
+            fin.setSiguiente(nuevo);
+            fin = nuevo;
+        }
+    }
+
+    public Partido desencolar() {
+        if (frente == null) return null;
+        Partido dato = (Partido) frente.getDato();
+        frente = frente.getSiguiente();
+        if (frente == null) {
+            fin = null;
+        }
+        return dato;
+    }
+
+    public Nodo getFrente() {
+        return frente;
     }
 
     public boolean estaVacia() {
-        return false;
-    }    
+        return frente == null;
+    }
 }

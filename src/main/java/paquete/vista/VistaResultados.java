@@ -1,16 +1,21 @@
 package paquete.vista;
 
 import javax.swing.table.DefaultTableModel;
+import paquete.controlador.ControladorPartido;
+import paquete.modelo.Partido;
+import paquete.modelo.Nodo;
 
 public class VistaResultados extends javax.swing.JFrame {
-    
+    private ControladorPartido controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaResultados.class.getName());
 
     public VistaResultados() {
         initComponents();
-        cargarDatos();
+        controlador = new ControladorPartido();
+        cargarPartidos();  
+        mostrarResultados();
     }
-    
+    /*datos quemados de prueba
         private void cargarDatos() {
         DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
         model.setRowCount(0);
@@ -27,6 +32,34 @@ public class VistaResultados extends javax.swing.JFrame {
 
         TlParticipante1.setText("2");
         TlParticipante.setText("1");
+    }*/
+    private void cargarPartidos() {
+        jComboBox1.removeAllItems();
+        Nodo aux = controlador.getPartidos();
+        while (aux != null) {
+            Partido p = (Partido) aux.getDato();
+            jComboBox1.addItem(
+                p.getEquipoLocal() + " vs " + p.getEquipoVisitante()
+            );
+            aux = aux.getSiguiente();
+        }
+    }
+    private void mostrarResultados() {
+        DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
+        model.setRowCount(0);
+
+        Nodo aux = controlador.getResultados();
+
+        while (aux != null) {
+            Partido p = (Partido) aux.getDato();
+            model.addRow(new Object[]{
+                p.getEquipoLocal() + " vs " + p.getEquipoVisitante(),
+                p.getPuntosLocal(),
+                p.getPuntosVisitante(),
+                p.getGanador()
+            });
+            aux = aux.getSiguiente();
+        }
     }
         
         @SuppressWarnings("unchecked")
@@ -38,7 +71,6 @@ public class VistaResultados extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         TlParticipante = new javax.swing.JTextField();
-        btnActualizarEvento1 = new java.awt.Button();
         TabParticipantes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaEventos = new javax.swing.JTable();
@@ -48,36 +80,23 @@ public class VistaResultados extends javax.swing.JFrame {
         btnVolverMenu = new java.awt.Button();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        btnEliminarParticipante1 = new java.awt.Button();
         TlParticipante1 = new javax.swing.JTextField();
+        btnGuardarResult = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Puintos Participantes 1:");
+        jLabel3.setText("Puntos Participante 2:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Puntos Participantes 2:");
+        jLabel4.setText("Puntos Participante 1:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Seleccionar Partido");
 
-        TlParticipante.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnActualizarEvento1.setActionCommand("Actualizar Evento");
-        btnActualizarEvento1.setBackground(new java.awt.Color(0, 102, 255));
-        btnActualizarEvento1.setEnabled(false);
-        btnActualizarEvento1.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizarEvento1.setLabel("Guardar Resultado");
-        btnActualizarEvento1.addActionListener(this::btnActualizarEvento1ActionPerformed);
-
         TabParticipantes.setFont(new java.awt.Font("Segoe UI Semilight", 0, 24)); // NOI18N
-        TabParticipantes.setForeground(new java.awt.Color(0, 0, 0));
         TabParticipantes.setText("Lista de Resultados");
 
         TablaEventos.setModel(new javax.swing.table.DefaultTableModel(
@@ -126,15 +145,10 @@ public class VistaResultados extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnEliminarParticipante1.setActionCommand("Eliminar Evento");
-        btnEliminarParticipante1.setBackground(new java.awt.Color(255, 51, 51));
-        btnEliminarParticipante1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarParticipante1.setLabel("Eliminar");
-        btnEliminarParticipante1.addActionListener(this::btnEliminarParticipante1ActionPerformed);
-
-        TlParticipante1.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardarResult.setBackground(new java.awt.Color(0, 102, 255));
+        btnGuardarResult.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardarResult.setText("Guardar Resultado");
+        btnGuardarResult.addActionListener(this::btnGuardarResultActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -155,25 +169,21 @@ public class VistaResultados extends javax.swing.JFrame {
                         .addGap(22, 22, 22))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnActualizarEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnGuardarResult)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
-                                        .addComponent(jLabel4)))
-                                .addGap(31, 31, 31)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TlParticipante1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TlParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 356, Short.MAX_VALUE)))
+                                        .addComponent(jLabel3))
+                                    .addGap(37, 37, 37)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(TlParticipante1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TlParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 359, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(338, 338, 338)
-                .addComponent(btnEliminarParticipante1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +201,8 @@ public class VistaResultados extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(TlParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(btnActualizarEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnGuardarResult)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -201,9 +211,7 @@ public class VistaResultados extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminarParticipante1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(78, 78, 78))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,25 +225,34 @@ public class VistaResultados extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 680, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnActualizarEvento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEvento1ActionPerformed
-        
-    }//GEN-LAST:event_btnActualizarEvento1ActionPerformed
-
-    private void btnEliminarParticipante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParticipante1ActionPerformed
-       
-    }//GEN-LAST:event_btnEliminarParticipante1ActionPerformed
-
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         
         new VistaPrincipal().setVisible(true); 
     }//GEN-LAST:event_btnVolverMenuActionPerformed
+
+    private void btnGuardarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarResultActionPerformed
+        int puntosLocal = Integer.parseInt(TlParticipante1.getText()); 
+        int puntosVisitante = Integer.parseInt(TlParticipante.getText()); 
+
+        String seleccionado = jComboBox1.getSelectedItem().toString();
+        String[] equipos = seleccionado.split(" vs ");
+
+        Partido partido = new Partido(equipos[0], equipos[1]);
+
+        partido.setPuntosLocal(puntosLocal);
+        partido.setPuntosVisitante(puntosVisitante);
+
+        controlador.registrarResultado(partido);
+
+        mostrarResultados();
+    }//GEN-LAST:event_btnGuardarResultActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VistaResultados().setVisible(true));
@@ -246,8 +263,7 @@ public class VistaResultados extends javax.swing.JFrame {
     private javax.swing.JTable TablaEventos;
     private javax.swing.JTextField TlParticipante;
     private javax.swing.JTextField TlParticipante1;
-    private java.awt.Button btnActualizarEvento1;
-    private java.awt.Button btnEliminarParticipante1;
+    private javax.swing.JButton btnGuardarResult;
     private java.awt.Button btnVolverMenu;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;

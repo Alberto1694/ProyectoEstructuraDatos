@@ -1,0 +1,4 @@
+Yei,29,Equipo A
+Luis,28,Equipo B
+Elena,30,Equpo C
+Julieta,33,Equpo D

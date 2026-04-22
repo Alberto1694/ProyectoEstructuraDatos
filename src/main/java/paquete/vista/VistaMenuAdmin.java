@@ -16,7 +16,7 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     
     @SuppressWarnings("unchecked")
     
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -81,6 +81,7 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         btGrafo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btGrafo.setForeground(new java.awt.Color(255, 255, 255));
         btGrafo.setText("Ver Grafo");
+        btGrafo.addActionListener(this::btGrafoActionPerformed);
 
         btCerrar.setBackground(new java.awt.Color(255, 0, 0));
         btCerrar.setText("Cerrar Sesión");
@@ -174,44 +175,50 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClasificacionActionPerformed
+    private void btClasificacionActionPerformed(java.awt.event.ActionEvent evt) {                                                
       
         new VistaClasificacion().setVisible(true);
-    }//GEN-LAST:event_btClasificacionActionPerformed
+    }                                               
 
-    private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
+    private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
         dispose();
-    }//GEN-LAST:event_btCerrarActionPerformed
+    }                                        
 
-    private void btParticipantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btParticipantesActionPerformed
+    private void btParticipantesActionPerformed(java.awt.event.ActionEvent evt) {                                                
 
         new VistaParticipantes().setVisible(true);
-    }//GEN-LAST:event_btParticipantesActionPerformed
+    }                                               
 
-    private void btResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResultadosActionPerformed
+    private void btResultadosActionPerformed(java.awt.event.ActionEvent evt) {                                             
       
         new VistaResultados().setVisible(true);
-    }//GEN-LAST:event_btResultadosActionPerformed
+    }                                            
 
-    private void btPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPartidosActionPerformed
+    private void btPartidosActionPerformed(java.awt.event.ActionEvent evt) {                                           
       
         new VistaPartidos().setVisible(true);
-    }//GEN-LAST:event_btPartidosActionPerformed
+    }                                          
 
-    private void btnEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventosActionPerformed
+    private void btnEventosActionPerformed(java.awt.event.ActionEvent evt) {                                           
          new VistaEventos().setVisible(true);
          this.dispose();
-    }//GEN-LAST:event_btnEventosActionPerformed
+    }                                          
+
+    private void btGrafoActionPerformed(java.awt.event.ActionEvent evt) {                                        
+       
+         new VistaGrafo().setVisible(true);
+         this.dispose();
+    }                                       
 
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(() -> new VistaMenuAdmin().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JToggleButton btCerrar;
     private javax.swing.JToggleButton btClasificacion;
     private javax.swing.JToggleButton btGrafo;
@@ -225,5 +232,5 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

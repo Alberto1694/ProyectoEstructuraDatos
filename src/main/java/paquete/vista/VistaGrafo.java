@@ -1,17 +1,26 @@
 package paquete.vista;
 
+import paquete.modelo.GrafoEquipos;
 import paquete.vista.VistaPrincipal;
+import com.mycompany.proyectoestructuradatos.ProyectoEstructuraDatos;
+
 
 public class VistaGrafo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaGrafo.class.getName());
+    
+    private GrafoEquipos grafo;
+    private java.awt.Graphics g;
+
 
     public VistaGrafo() {
-        initComponents();
+    initComponents();
+    grafo = ProyectoEstructuraDatos.grafo;
     }
     
+    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -139,30 +148,38 @@ public class VistaGrafo extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnProgramasPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgramasPartidoActionPerformed
+    private void btnProgramasPartidoActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        if (grafo == null || grafo.estaVacia()) {
+            System.out.println("No hay datos en el grafo");
+            return;
+        }
+        g = jPanel1.getGraphics();
+        grafo.dibujarGrafo(jPanel1);
+    }                                                   
 
-    }//GEN-LAST:event_btnProgramasPartidoActionPerformed
+    private void btnEliminarParticipante1ActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+        if (g != null) {
+            g.clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        }
+        jPanel1.repaint();
+    }                                                        
 
-    private void btnEliminarParticipante1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParticipante1ActionPerformed
-        
-    }//GEN-LAST:event_btnEliminarParticipante1ActionPerformed
+    private void btnEliminarParticipante2ActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+       this.dispose();
+    }                                                        
 
-    private void btnEliminarParticipante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParticipante2ActionPerformed
-     
-    }//GEN-LAST:event_btnEliminarParticipante2ActionPerformed
-
-    private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
-        
-        new VistaPrincipal().setVisible(true);  
-    }//GEN-LAST:event_btnVolverMenuActionPerformed
+    private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        new VistaPrincipal().setVisible(true);
+        this.dispose();
+    }                                             
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VistaGrafo().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private java.awt.Button btnEliminarParticipante1;
     private java.awt.Button btnEliminarParticipante2;
     private java.awt.Button btnProgramasPartido;
@@ -171,5 +188,7 @@ public class VistaGrafo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
+
+

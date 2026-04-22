@@ -17,23 +17,40 @@ public class Participante {
 
     public Participante() {
     }
+    
+    //getters y setters
 
-    public void registrarParticipante() {
-        System.out.println("Participante registrado");
+    public int getIdParticipante() {
+        return idParticipante;
     }
 
-    public void actualizarParticipante() {
-        System.out.println("Participante actualizado");
+    public void setIdParticipante(int idParticipante) {
+        this.idParticipante = idParticipante;
     }
 
-    public void eliminarParticipante() {
-        System.out.println("Participante eliminado");
+    public String getNombre() {
+        return nombre;
     }
 
-    public void mostrarParticipante() {
-        System.out.println("ID Participante: " + idParticipante);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Edad: " + edad);
-        System.out.println("Equipo: " + equipo);
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+
 }

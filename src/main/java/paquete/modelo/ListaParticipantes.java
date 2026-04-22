@@ -9,16 +9,51 @@ package paquete.modelo;
  * @author maria
  */
 public class ListaParticipantes {
-    private Nodo inicio;
-    private Nodo fin;
+    private NodoDoble inicio;
+    private NodoDoble fin;
 
-    public void agregar(Participante p) {
+    public ListaParticipantes() {
+        inicio = null;
+        fin = null;
+    }
+    //para agregar participante
+    public void insertar(Participante p) {
+        NodoDoble nuevo = new NodoDoble(p);
+        if (inicio == null) {
+            inicio = nuevo;
+            fin = nuevo;
+        } else {
+            fin.setSiguiente(nuevo);
+            nuevo.setAnterior(fin);
+            fin = nuevo;
+        }
     }
 
-    public void eliminar() {
+    public NodoDoble getInicio() {
+        return inicio;
     }
+    //para eliminar participante
+    public void eliminar(String nombre) {
+        NodoDoble actual = inicio;
 
-    public boolean estaVacia() {
-        return false;
-    }   
+        while (actual != null) {
+            Participante p = (Participante) actual.getDato();
+
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+
+                if (actual == inicio) {
+                    inicio = actual.getSiguiente();
+                    if (inicio != null) inicio.setAnterior(null);
+                } else if (actual == fin) {
+                    fin = actual.getAnterior();
+                    if (fin != null) fin.setSiguiente(null);
+                } else {
+                    actual.getAnterior().setSiguiente(actual.getSiguiente());
+                    actual.getSiguiente().setAnterior(actual.getAnterior());
+                }
+                return;
+            }
+            actual = actual.getSiguiente();
+        }
+    }
 }

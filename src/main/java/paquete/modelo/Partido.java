@@ -11,14 +11,13 @@ package paquete.modelo;
 public class Partido {
     private String equipoLocal; 
     private String equipoVisitante; 
-    private int golesLocales; 
-    private int golesVisitantes; 
+    private int puntosLocal;
+    private int puntosVisitante;
+    private String fecha;
 
     public Partido(String equipoLocal, String equipoVisitante) {
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
-        this.golesLocales = 0;
-        this.golesVisitantes = 0;
     }
 
     public String getEquipoLocal() {
@@ -37,33 +36,47 @@ public class Partido {
         this.equipoVisitante = equipoVisitante;
     }
 
-    public int getGolesLocales() {
-        return golesLocales;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setGolesLocales(int golesLocales) {
-        this.golesLocales = golesLocales;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public int getGolesVisitantes() {
-        return golesVisitantes;
+    public int getPuntosLocal() {
+        return puntosLocal;
     }
 
-    public void setGolesVisitantes(int golesVisitantes) {
-        this.golesVisitantes = golesVisitantes;
+    public void setPuntosLocal(int puntosLocal) {
+        this.puntosLocal = puntosLocal;
     }
-    
-    public void resultado(int golesLocales, int golesVisitantes){
-        
-        this.golesLocales = golesLocales;
-        this.golesVisitantes = golesVisitantes;
+
+    public int getPuntosVisitante() {
+        return puntosVisitante;
+    }
+
+    public void setPuntosVisitante(int puntosVisitante) {
+        this.puntosVisitante = puntosVisitante;
+    }
+
+   public String getGanador() {
+
+        if (puntosLocal > puntosVisitante) {
+            return equipoLocal;
+        } else if (puntosVisitante > puntosLocal) {
+            return equipoVisitante;
+        } else {
+            return "Empate";
+        }
     }
 
     @Override
     public String toString() {
-        return equipoLocal + "VS" + equipoVisitante +
-                "Resultado"+ golesLocales + "-" + golesVisitantes;
-        
+        return "Partido{" + "equipoLocal=" + equipoLocal + ", equipoVisitante=" + equipoVisitante + ", puntosLocal=" + puntosLocal + ", puntosVisitante=" + puntosVisitante + ", fecha=" + fecha + '}';
     }
+    
+
+
     
 }

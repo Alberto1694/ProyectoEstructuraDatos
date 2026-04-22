@@ -21,6 +21,16 @@ public class PilaDinamica {
     public PilaDinamica() {
         tope = null;
     }
+    //get y set
+
+    public Nodo getTope() {
+        return tope;
+    }
+
+    public void setTope(Nodo tope) {
+        this.tope = tope;
+    }
+    
 
     // Apilar
     public void apilar(Partido p) {

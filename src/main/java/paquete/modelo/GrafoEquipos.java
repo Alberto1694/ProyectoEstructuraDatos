@@ -1,37 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package paquete.modelo;
-
+ 
 /**
  *
- * @author Derek
+ * @author maria
  */
 public class GrafoEquipos {
-    // aqui se guardan todos los equipos como una lista enlazada
+    // aqui se guardan todos los equipos en una lista enlazada
     private Nodo listaVertices;
     private int cantidadEquipos;
-
+ 
     public GrafoEquipos() {
         this.listaVertices = null;
         this.cantidadEquipos = 0;
     }
-
+ 
     // mete un equipo nuevo al grafo
     public void agregarEquipo(Equipo e) {
-        // cada vertice es un arreglo de 2: el equipo y sus conexiones
         Object[] vertice = new Object[2];
         vertice[0] = e;
         vertice[1] = null;
-
+ 
         Nodo nuevo = new Nodo(vertice);
         nuevo.setSiguiente(listaVertices);
         listaVertices = nuevo;
         cantidadEquipos++;
     }
-
-    // busca un equipo dentro del grafo por su id
+ 
+    // busca donde esta un equipo por su id
     private Nodo buscarVertice(int idEquipo) {
         Nodo actual = listaVertices;
         while (actual != null) {
@@ -44,36 +39,33 @@ public class GrafoEquipos {
         }
         return null;
     }
-
-    // une dos equipos, o sea que jugaron entre ellos
+ 
+    // une dos equipos, quiere decir que jugaron entre ellos
     public void conectarEquipos(Equipo A, Equipo B) {
         Nodo verticeA = buscarVertice(A.getIdEquipo());
         Nodo verticeB = buscarVertice(B.getIdEquipo());
-
-        // si alguno no existe no hace nada
+ 
         if (verticeA == null || verticeB == null) {
             return;
         }
-
-        // le agrega B como rival de A
+ 
         Object[] datosA = (Object[]) verticeA.getDato();
         Nodo nuevaConA = new Nodo(B);
         nuevaConA.setSiguiente((Nodo) datosA[1]);
         datosA[1] = nuevaConA;
-
-        // le agrega A como rival de B
+ 
         Object[] datosB = (Object[]) verticeB.getDato();
         Nodo nuevaConB = new Nodo(A);
         nuevaConB.setSiguiente((Nodo) datosB[1]);
         datosB[1] = nuevaConB;
     }
-
-    // dice si no hay ningun equipo todavia
+ 
+    // dice si no hay ningun equipo
     public boolean estaVacia() {
         return listaVertices == null;
     }
-
-    // revisa si dos equipos ya jugaron
+ 
+    // revisa si dos equipos ya jugaron entre ellos
     public boolean existeConexion(int idA, int idB) {
         Nodo vertice = buscarVertice(idA);
         if (vertice == null) {
@@ -81,7 +73,7 @@ public class GrafoEquipos {
         }
         Object[] datos = (Object[]) vertice.getDato();
         Nodo conexion = (Nodo) datos[1];
-
+ 
         while (conexion != null) {
             Equipo eq = (Equipo) conexion.getDato();
             if (eq.getIdEquipo() == idB) {
@@ -91,75 +83,73 @@ public class GrafoEquipos {
         }
         return false;
     }
-
-    // imprime contra quien ha jugado un equipo
-    public void mostrarEquiposConectados(int idEquipo) {
-        Nodo vertice = buscarVertice(idEquipo);
-        if (vertice == null) {
-            System.out.println("Equipo no existe");
+ 
+    // dibuja el grafo en el panel que le pasemos
+    public void dibujarGrafo(javax.swing.JPanel panel) {
+        if (estaVacia()) {
             return;
         }
-        Object[] datos = (Object[]) vertice.getDato();
-        Equipo equipo = (Equipo) datos[0];
-        Nodo conexion = (Nodo) datos[1];
-
-        System.out.println("Rivales de " + equipo.getNombreEquipo() + ":");
-        boolean tiene = false;
-        while (conexion != null) {
-            Equipo eq = (Equipo) conexion.getDato();
-            System.out.println("  - " + eq.getNombreEquipo());
-            tiene = true;
-            conexion = conexion.getSiguiente();
-        }
-        if (!tiene) {
-            System.out.println("  No ha jugado con nadie");
-        }
-    }
-
-    // cuenta con cuantos equipos ha jugado
-    public int cantidadDeConexiones(int idEquipo) {
-        Nodo vertice = buscarVertice(idEquipo);
-        if (vertice == null) {
-            return -1;
-        }
-        Object[] datos = (Object[]) vertice.getDato();
-        Nodo conexion = (Nodo) datos[1];
-
-        int contador = 0;
-        while (conexion != null) {
-            contador++;
-            conexion = conexion.getSiguiente();
-        }
-        return contador;
-    }
-
-    // imprime todo el grafo completo
-    public void mostrarGrafo() {
+ 
+        java.awt.Graphics g = panel.getGraphics();
+        int ancho = panel.getWidth();
+        int alto = panel.getHeight();
+ 
+        // limpia el panel
+        g.setColor(java.awt.Color.WHITE);
+        g.fillRect(0, 0, ancho, alto);
+ 
+        int total = cantidadEquipos;
+        int centroX = ancho / 2;
+        int centroY = alto / 2;
+        int radio = Math.min(centroX, centroY) - 60;
+ 
+        // guarda las posiciones de cada equipo
+        int[] posX = new int[total];
+        int[] posY = new int[total];
+        Equipo[] equiposArray = new Equipo[total];
+ 
+        // pone cada equipo en circulo
         Nodo actual = listaVertices;
+        int indice = 0;
         while (actual != null) {
             Object[] datos = (Object[]) actual.getDato();
             Equipo equipo = (Equipo) datos[0];
-            Nodo conexion = (Nodo) datos[1];
-
-            System.out.print(equipo.getNombreEquipo() + " -> ");
-            boolean tiene = false;
-            while (conexion != null) {
-                Equipo eq = (Equipo) conexion.getDato();
-                if (tiene) {
-                    System.out.print(", ");
-                }
-                System.out.print(eq.getNombreEquipo());
-                tiene = true;
-                conexion = conexion.getSiguiente();
-            }
-            if (!tiene) {
-                System.out.print("(solo)");
-            }
-            System.out.println();
+            equiposArray[indice] = equipo;
+ 
+            double angulo = 2 * Math.PI * indice / total - Math.PI / 2;
+            posX[indice] = (int) (centroX + radio * Math.cos(angulo));
+            posY[indice] = (int) (centroY + radio * Math.sin(angulo));
+ 
+            indice++;
             actual = actual.getSiguiente();
         }
+ 
+        // dibuja las lineas entre los que jugaron
+        g.setColor(java.awt.Color.GRAY);
+        for (int i = 0; i < total; i++) {
+            for (int j = i + 1; j < total; j++) {
+                if (existeConexion(equiposArray[i].getIdEquipo(), equiposArray[j].getIdEquipo())) {
+                    g.drawLine(posX[i], posY[i], posX[j], posY[j]);
+                }
+            }
+        }
+ 
+        // dibuja los circulos con los nombres
+        for (int i = 0; i < total; i++) {
+            g.setColor(new java.awt.Color(0, 102, 204));
+            g.fillOval(posX[i] - 30, posY[i] - 30, 60, 60);
+ 
+            g.setColor(java.awt.Color.BLACK);
+            g.drawOval(posX[i] - 30, posY[i] - 30, 60, 60);
+ 
+            g.setColor(java.awt.Color.WHITE);
+            g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 10));
+            String nombre = equiposArray[i].getNombreEquipo();
+            int textoAncho = g.getFontMetrics().stringWidth(nombre);
+            g.drawString(nombre, posX[i] - textoAncho / 2, posY[i] + 4);
+        }
     }
-
+ 
     public int getCantidadEquipos() {
         return cantidadEquipos;
     }

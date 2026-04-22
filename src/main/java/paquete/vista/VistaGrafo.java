@@ -1,19 +1,16 @@
 package paquete.vista;
 
+import paquete.modelo.GrafoEquipos;
 import paquete.vista.VistaPrincipal;
- 
-    import paquete.modelo.GrafoEquipos;
-    import paquete.vista.VistaPrincipal;
-    import paquete.modelo.GrafoEquipos;
-    import paquete.modelo.Equipo;
-    import paquete.modelo.Nodo;
-    import com.mycompany.proyectoestructuradatos.ProyectoEstructuraDatos;
+import com.mycompany.proyectoestructuradatos.ProyectoEstructuraDatos;
+
 
 public class VistaGrafo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaGrafo.class.getName());
     
     private GrafoEquipos grafo;
+    private java.awt.Graphics g;
 
 
     public VistaGrafo() {
@@ -154,11 +151,18 @@ public class VistaGrafo extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void btnProgramasPartidoActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        if (grafo == null || grafo.estaVacia()) {
+            System.out.println("No hay datos en el grafo");
+            return;
+        }
+        g = jPanel1.getGraphics();
         grafo.dibujarGrafo(jPanel1);
     }                                                   
 
     private void btnEliminarParticipante1ActionPerformed(java.awt.event.ActionEvent evt) {                                                         
-        jPanel1.getGraphics().clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        if (g != null) {
+            g.clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
+        }
         jPanel1.repaint();
     }                                                        
 
@@ -167,8 +171,8 @@ public class VistaGrafo extends javax.swing.JFrame {
     }                                                        
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        
-        new VistaPrincipal().setVisible(true);  
+        new VistaPrincipal().setVisible(true);
+        this.dispose();
     }                                             
 
     public static void main(String args[]) {
@@ -186,4 +190,5 @@ public class VistaGrafo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     // End of variables declaration                   
 }
+
 

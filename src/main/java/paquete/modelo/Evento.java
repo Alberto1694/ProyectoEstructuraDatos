@@ -23,6 +23,7 @@ public class Evento {
         colaPartidos = new ColaDinamica();
         pilaResultados = new PilaDinamica();
     }
+
     public Evento(int idEvento, String nombreEvento, String fecha, String ubicacion) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
@@ -37,35 +38,47 @@ public class Evento {
         return idEvento;
     }
 
+    public void setIdEvento(int idEvento) {
+        this.idEvento = idEvento;
+    }
+
     public String getNombreEvento() {
         return nombreEvento;
+    }
+
+    public void setNombreEvento(String nombreEvento) {
+        this.nombreEvento = nombreEvento;
     }
 
     public String getFecha() {
         return fecha;
     }
 
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
     public String getUbicacion() {
         return ubicacion;
     }
 
-        
-    public void registrarEvento() {
-        System.out.println("Evento registrado");
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
-    public void actualizarEvento() {
-        System.out.println("Evento actualizado");
+    public ListaParticipantes getListaParticipantes() {
+        return listaParticipantes;
     }
 
-    public void eliminarEvento() {
-        System.out.println("Evento eliminado");
+    public ColaDinamica getColaPartidos() {
+        return colaPartidos;
     }
 
-    public void mostrarEvento() {
-        System.out.println("ID Evento: " + idEvento);
-        System.out.println("Nombre Evento: " + nombreEvento);
-        System.out.println("Fecha: " + fecha);
-        System.out.println("Ubicación: " + ubicacion);
+    public PilaDinamica getPilaResultados() {
+        return pilaResultados;
+    }
+
+    public String resumen() {
+        return "ID: " + idEvento + " | " + nombreEvento + " | Fecha: " + fecha + " | Ubicación: " + ubicacion;
     }
 }

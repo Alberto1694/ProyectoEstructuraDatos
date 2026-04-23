@@ -93,26 +93,16 @@ public class Equipo {
         derrotas++;
     }
 
+    public void sumarEmpate() {
+        partidosJugados++;
+        puntos += 1;
+    }
+
     public void reiniciarEstadisticas() {
         partidosJugados = 0;
         victorias = 0;
         derrotas = 0;
         puntos = 0;
-    }
-
-    public void registrarEquipo() {
-        System.out.println("Equipo registrado");
-    }
-
-    public void eliminarEquipo() {
-        System.out.println("Equipo eliminado");
-    }
-
-    public void mostrarEquipo() {
-        System.out.println("ID Equipo: " + idEquipo);
-        System.out.println("Nombre Equipo: " + nombreEquipo);
-        System.out.println("Entrenador: " + entrenador);
-        System.out.println("Cantidad de jugadores: " + cantidadJugadores);
     }
 
     @Override

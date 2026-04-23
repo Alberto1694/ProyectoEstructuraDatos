@@ -7,7 +7,7 @@ import paquete.vista.VistaEventos;
 
 public class VistaMenuAdmin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaMenuAdmin.class.getName());
+    
     
     public VistaMenuAdmin() {
         initComponents();

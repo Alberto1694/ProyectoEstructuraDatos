@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class VistaEventos extends javax.swing.JFrame {
 private ControladorEvento controlador;    
-   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEventos.class.getName());
+   
 
 
 public VistaEventos() {

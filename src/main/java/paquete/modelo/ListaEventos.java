@@ -56,6 +56,6 @@ public class ListaEventos {
 }
 
     public boolean estaVacia() {
-        return false;
+        return inicio == null;
     }    
 }

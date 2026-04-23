@@ -10,7 +10,7 @@ import paquete.modelo.Equipo;
 public class VistaParticipantes extends javax.swing.JFrame {
     private ControladorParticipante controlador;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaParticipantes.class.getName());
+   
     
     public VistaParticipantes() {
     initComponents();

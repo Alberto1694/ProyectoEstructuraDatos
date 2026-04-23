@@ -7,7 +7,7 @@ import paquete.modelo.Nodo;
 
 public class VistaResultados extends javax.swing.JFrame {
     private ControladorPartido controlador;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaResultados.class.getName());
+    
 
     public VistaResultados() {
         initComponents();

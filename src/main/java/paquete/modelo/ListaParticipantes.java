@@ -56,4 +56,21 @@ public class ListaParticipantes {
             actual = actual.getSiguiente();
         }
     }
+    
+    public Participante buscarRecursivo(String nombre) {
+        return buscarRecursivoAux(inicio, nombre);
+    }
+    
+    private Participante buscarRecursivoAux(NodoDoble actual, String nombre) {
+        if (actual == null) {
+            return null;
+        }
+        
+        Participante p = (Participante) actual.getDato();
+        if (p.getNombre().equalsIgnoreCase(nombre)) {
+            return p;
+        }
+        
+        return buscarRecursivoAux(actual.getSiguiente(), nombre);
+    }
 }

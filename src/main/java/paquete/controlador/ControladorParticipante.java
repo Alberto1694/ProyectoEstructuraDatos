@@ -36,6 +36,11 @@ public class ControladorParticipante {
         lista.eliminar(nombre);
         guardarEnArchivo();
 }
+    
+    public Participante buscarParticipanteRecursivo(String nombre) {
+        return lista.buscarRecursivo(nombre);
+    }
+    
     //para persistencia de datos (guardar y cargar en txt)
     private void guardarEnArchivo() {
     try (BufferedWriter bw = new BufferedWriter (new FileWriter(archivo))){

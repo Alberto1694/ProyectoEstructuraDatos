@@ -14,20 +14,31 @@ import java.io.*;
  */
 public class ControladorPartido {
     private static ColaDinamica cola;
-    private static PilaDinamica pilaResultados = new PilaDinamica();
+    private static PilaDinamica pilaResultados;
+    private static boolean datosCargados = false;
     private final String archivo = "partidos.txt";
     private final String archivoResultados = "resultados.txt";
      
 
     public ControladorPartido() {
-        if (cola == null) {
-        cola = new ColaDinamica();
-        cargarDesdeArchivo();
-        if (pilaResultados == null) {
-            pilaResultados = new PilaDinamica();
-            cargarResultados(); 
+        if (!datosCargados) {
+            if (cola == null) {
+                cola = new ColaDinamica();
+            }
+            if (pilaResultados == null) {
+                pilaResultados = new PilaDinamica();
+            }
+            cargarDesdeArchivo();
+            cargarResultados();
+            datosCargados = true;
+        } else {
+            if (cola == null) {
+                cola = new ColaDinamica();
+            }
+            if (pilaResultados == null) {
+                pilaResultados = new PilaDinamica();
+            }
         }
-    }
     }
 
     public void agregarPartido(Partido p) {
@@ -43,6 +54,7 @@ public class ControladorPartido {
         Partido p = cola.desencolar();
           if (p != null) {
             pilaResultados.apilar(p);
+            guardarResultados();
         }
         guardarEnArchivo();
         return p;

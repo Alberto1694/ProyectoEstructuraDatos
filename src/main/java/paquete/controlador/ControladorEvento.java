@@ -22,7 +22,7 @@ public class ControladorEvento {
     private static int siguienteIdParticipante = 1;
     private static int siguienteIdEquipo = 1;
 
-    private static final Sistema persistencia = new Sistema("datos.json");
+    private static final Sistema sistema = new Sistema("datos.json");
     private static boolean cargado = false;
 
     public ControladorEvento() {
@@ -31,7 +31,7 @@ public class ControladorEvento {
 
     private void inicializar() {
         if (!cargado) {
-            lista = persistencia.cargar();
+            lista = sistema.cargar();
             if (lista == null) {
                 lista = new ListaEventos();
             }
@@ -85,7 +85,7 @@ public class ControladorEvento {
     }
 
     public void guardarCambios() {
-        persistencia.guardar(lista);
+        sistema.guardar(lista);
     }
 
     public String detalleEvento(int idEvento) {

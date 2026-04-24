@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 
 
 package paquete.vista;
@@ -112,7 +115,7 @@ public class VistaClasificacion extends javax.swing.JFrame {
             }
         }
 
-        return -1; // no lo encontro
+        return -1;
     }
 
     // ordena los equipos por puntos (de mayor a menor)

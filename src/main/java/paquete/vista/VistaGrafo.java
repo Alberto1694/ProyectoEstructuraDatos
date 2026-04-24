@@ -10,6 +10,11 @@ public class VistaGrafo extends javax.swing.JFrame {
     
     
     private GrafoEquipos grafo;
+    /*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+    
     private java.awt.Graphics g;
 
 

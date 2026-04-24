@@ -1,1 +1,2 @@
-Equpo C,Equpo D,24/04/26
+Madrid,barcelona,20994
+Liga,Saprisa,20994

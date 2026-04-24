@@ -1,0 +1,2 @@
+Liga,Saprisa,1,1
+Madrid,barcelona,2,0

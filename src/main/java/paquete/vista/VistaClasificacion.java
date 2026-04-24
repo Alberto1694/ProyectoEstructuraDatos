@@ -1,27 +1,155 @@
+
+
+
 package paquete.vista;
 
 import javax.swing.table.DefaultTableModel;
+import paquete.controlador.ControladorPartido;
+import paquete.modelo.Nodo;
+import paquete.modelo.Partido;
 
 public class VistaClasificacion extends javax.swing.JFrame {
-    
-   
+
+    private ControladorPartido controlador;
 
     public VistaClasificacion() {
         initComponents();
-        cargarDatos();
-    }
-    
-        private void cargarDatos() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{1, "Equipo 1", 4, 3, 1, 10});
-        model.addRow(new Object[]{2, "Equipo 2", 4, 3, 1, 9});
-        model.addRow(new Object[]{3, "Equipo 3", 4, 2, 2, 7});
-        model.addRow(new Object[]{4, "Equipo 4", 4, 2, 2, 6});
-        model.addRow(new Object[]{5, "Equipo 5", 4, 1, 3, 4});
-        model.addRow(new Object[]{6, "Equipo 6", 4, 1, 3, 3});
+        controlador = new ControladorPartido(); // controlador para traer los resultados
+        cargarClasificacion(); // carga la tabla apenas abre
     }
 
+    // metodo que arma la tabla de clasificacion
+    private void cargarClasificacion() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // limpia la tabla antes de llenarla
+
+        // arreglos para guardar los datos de cada equipo
+        String[] nombres = new String[100];
+        int[] pj = new int[100]; // partidos jugados
+        int[] pg = new int[100]; // ganados
+        int[] pp = new int[100]; // perdidos
+        int[] pts = new int[100]; // puntos
+
+        int cantidad = 0; // cuantos equipos hay
+
+        Nodo aux = controlador.getResultados(); // trae los resultados guardados
+
+        // recorre todos los resultados
+        while (aux != null) {
+
+            Partido p = (Partido) aux.getDato();
+
+            String local = p.getEquipoLocal();
+            String visitante = p.getEquipoVisitante();
+
+            int puntosLocal = p.getPuntosLocal();
+            int puntosVisitante = p.getPuntosVisitante();
+
+            // busca si el equipo local ya existe
+            int posLocal = buscarEquipo(nombres, cantidad, local);
+
+            // si no existe lo agrega
+            if (posLocal == -1) {
+                nombres[cantidad] = local;
+                posLocal = cantidad;
+                cantidad++;
+            }
+
+            // mismo proceso para visitante
+            int posVisitante = buscarEquipo(nombres, cantidad, visitante);
+
+            if (posVisitante == -1) {
+                nombres[cantidad] = visitante;
+                posVisitante = cantidad;
+                cantidad++;
+            }
+
+            // suma partidos jugados
+            pj[posLocal]++;
+            pj[posVisitante]++;
+
+            // logica de puntos
+            if (puntosLocal > puntosVisitante) {
+                pg[posLocal]++;
+                pp[posVisitante]++;
+                pts[posLocal] += 3;
+            } else if (puntosVisitante > puntosLocal) {
+                pg[posVisitante]++;
+                pp[posLocal]++;
+                pts[posVisitante] += 3;
+            } else {
+                // empate
+                pts[posLocal]++;
+                pts[posVisitante]++;
+            }
+
+            aux = aux.getSiguiente();
+        }
+
+        // ordena los equipos por puntos
+        ordenar(nombres, pj, pg, pp, pts, cantidad);
+
+        // mete los datos a la tabla
+        for (int i = 0; i < cantidad; i++) {
+            model.addRow(new Object[]{
+                i + 1,
+                nombres[i],
+                pj[i],
+                pg[i],
+                pp[i],
+                pts[i]
+            });
+        }
+    }
+
+    // busca si un equipo ya existe en el arreglo
+    private int buscarEquipo(String[] nombres, int cantidad, String nombre) {
+
+        for (int i = 0; i < cantidad; i++) {
+            if (nombres[i].equals(nombre)) {
+                return i;
+            }
+        }
+
+        return -1; // no lo encontro
+    }
+
+    // ordena los equipos por puntos (de mayor a menor)
+    private void ordenar(String[] nombres, int[] pj, int[] pg, int[] pp, int[] pts, int cantidad) {
+
+        for (int i = 0; i < cantidad - 1; i++) {
+            for (int j = i + 1; j < cantidad; j++) {
+
+                if (pts[j] > pts[i]) {
+
+                    // intercambia todo para mantener los datos correctos
+                    String tempNombre = nombres[i];
+                    nombres[i] = nombres[j];
+                    nombres[j] = tempNombre;
+
+                    int temp = pj[i];
+                    pj[i] = pj[j];
+                    pj[j] = temp;
+
+                    temp = pg[i];
+                    pg[i] = pg[j];
+                    pg[j] = temp;
+
+                    temp = pp[i];
+                    pp[i] = pp[j];
+                    pp[j] = temp;
+
+                    temp = pts[i];
+                    pts[i] = pts[j];
+                    pts[j] = temp;
+                }
+            }
+        }
+    }
+
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -145,16 +273,18 @@ public class VistaClasificacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProgramasPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgramasPartidoActionPerformed
-
+       cargarClasificacion();
     }//GEN-LAST:event_btnProgramasPartidoActionPerformed
 
     private void btnEliminarParticipante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarParticipante2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        this.dispose();
     }//GEN-LAST:event_btnEliminarParticipante2ActionPerformed
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
       
-        new VistaPrincipal().setVisible(true);  
+        new VistaMenuAdmin().setVisible(true); 
+        this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     public static void main(String args[]) {

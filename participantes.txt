@@ -1,4 +1,4 @@
-Yei,29,Equipo A
-Luis,28,Equipo B
-Elena,30,Equpo C
-Julieta,33,Equpo D
+Derek,20,1,Madrid
+Maria,20,2,barcelona
+Arberto,20,3,Liga
+Jose,21,4,Saprisa

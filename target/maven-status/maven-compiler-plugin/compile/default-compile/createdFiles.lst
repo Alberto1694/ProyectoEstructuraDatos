@@ -1,4 +1,5 @@
 paquete\vista\VistaPrincipal.class
+paquete\modelo\Sistema$Parser.class
 com\mycompany\proyectoestructuradatos\ProyectoEstructuraDatos.class
 paquete\controlador\ControladorPartido.class
 paquete\vista\VistaParticipantes.class
@@ -20,7 +21,7 @@ paquete\controlador\ControladorEvento.class
 paquete\controlador\ControladorParticipante.class
 paquete\modelo\ColaDinamica.class
 paquete\modelo\PilaDinamica.class
-com\mycompany\proyectoestructuradatos\ProyectoEstructuraDatos$1.class
+paquete\modelo\Sistema.class
 paquete\vista\VistaMenuAdmin.class
 paquete\vista\VistaResultados.class
 paquete\modelo\Partido.class

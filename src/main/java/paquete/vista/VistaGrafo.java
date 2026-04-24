@@ -171,7 +171,7 @@ public class VistaGrafo extends javax.swing.JFrame {
     }                                                        
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        new VistaPrincipal().setVisible(true);
+        new VistaMenuAdmin().setVisible(true);
         this.dispose();
     }                                             
 

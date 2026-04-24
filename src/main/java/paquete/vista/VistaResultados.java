@@ -6,58 +6,57 @@ import paquete.modelo.Partido;
 import paquete.modelo.Nodo;
 
 public class VistaResultados extends javax.swing.JFrame {
+
     private ControladorPartido controlador;
-    
 
     public VistaResultados() {
         initComponents();
         controlador = new ControladorPartido();
-        cargarPartidos();  
+        cargarPartidos();
         mostrarResultados();
     }
-    /*datos quemados de prueba
-        private void cargarDatos() {
-        DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{"Equipo 1 vs Equipo 8", "3", "1", "Equipo 1"});
-        model.addRow(new Object[]{"Equipo 2 vs Equipo 7", "2", "2", "Empate"});
-        model.addRow(new Object[]{"Equipo 3 vs Equipo 6", "0", "1", "Equipo 6"});
-        model.addRow(new Object[]{"Equipo 4 vs Equipo 5", "4", "2", "Equipo 4"});
 
-        jComboBox1.removeAllItems();
-        jComboBox1.addItem("Equipo 1 vs Equipo 8");
-        jComboBox1.addItem("Equipo 2 vs Equipo 7");
-        jComboBox1.addItem("Equipo 3 vs Equipo 6");
-        jComboBox1.addItem("Equipo 4 vs Equipo 5");
-
-        TlParticipante1.setText("2");
-        TlParticipante.setText("1");
-    }*/
     private void cargarPartidos() {
+
         jComboBox1.removeAllItems();
+
         Nodo aux = controlador.getPartidos();
+
+        if (aux == null) {
+            System.out.println("No hay partidos en la cola");
+            return;
+        }
+
         while (aux != null) {
+
             Partido p = (Partido) aux.getDato();
+
             jComboBox1.addItem(
-                p.getEquipoLocal() + " vs " + p.getEquipoVisitante()
+                    p.getEquipoLocal() + " vs " + p.getEquipoVisitante()
             );
+
             aux = aux.getSiguiente();
         }
     }
+
     private void mostrarResultados() {
+
         DefaultTableModel model = (DefaultTableModel) TablaEventos.getModel();
         model.setRowCount(0);
 
         Nodo aux = controlador.getResultados();
 
         while (aux != null) {
+
             Partido p = (Partido) aux.getDato();
+
             model.addRow(new Object[]{
                 p.getEquipoLocal() + " vs " + p.getEquipoVisitante(),
                 p.getPuntosLocal(),
                 p.getPuntosVisitante(),
                 p.getGanador()
             });
+
             aux = aux.getSiguiente();
         }
     }
@@ -144,6 +143,8 @@ public class VistaResultados extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
+
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
         btnGuardarResult.setBackground(new java.awt.Color(0, 102, 255));
         btnGuardarResult.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,25 +235,62 @@ public class VistaResultados extends javax.swing.JFrame {
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         
-        new VistaPrincipal().setVisible(true); 
+        new VistaMenuAdmin().setVisible(true); 
+        this.dispose();
+        
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     private void btnGuardarResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarResultActionPerformed
-        int puntosLocal = Integer.parseInt(TlParticipante1.getText()); 
-        int puntosVisitante = Integer.parseInt(TlParticipante.getText()); 
+    
+        if (jComboBox1.getSelectedItem() == null) {
+            System.out.println("Seleccione un partido");
+            return;
+        }
+
+        try {
+
+            int puntosLocal = Integer.parseInt(TlParticipante1.getText());
+            int puntosVisitante = Integer.parseInt(TlParticipante.getText());
+
+            String seleccionado = jComboBox1.getSelectedItem().toString();
+            String[] equipos = seleccionado.split(" vs ");
+
+            Partido partido = new Partido(equipos[0], equipos[1]);
+
+            partido.setPuntosLocal(puntosLocal);
+            partido.setPuntosVisitante(puntosVisitante);
+
+            controlador.registrarResultado(partido);
+
+            mostrarResultados();
+
+            TlParticipante1.setText("");
+            TlParticipante.setText("");
+
+            System.out.println("Resultado guardado");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Debe ingresar puntos validos");
+        }
+    }//GEN-LAST:event_btnGuardarResultActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    
+       if (jComboBox1.getSelectedItem() == null) {
+          return;
+        }
 
         String seleccionado = jComboBox1.getSelectedItem().toString();
-        String[] equipos = seleccionado.split(" vs ");
 
-        Partido partido = new Partido(equipos[0], equipos[1]);
+        System.out.println("Seleccionado: " + seleccionado);
 
-        partido.setPuntosLocal(puntosLocal);
-        partido.setPuntosVisitante(puntosVisitante);
+    // limpiar campos de puntos
+        TlParticipante1.setText("");
+        TlParticipante.setText("");
 
-        controlador.registrarResultado(partido);
 
-        mostrarResultados();
-    }//GEN-LAST:event_btnGuardarResultActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VistaResultados().setVisible(true));

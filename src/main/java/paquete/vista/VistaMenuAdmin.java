@@ -180,6 +180,7 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private void btClasificacionActionPerformed(java.awt.event.ActionEvent evt) {                                                
       
         new VistaClasificacion().setVisible(true);
+        this.dispose();
     }                                               
 
     private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -190,16 +191,19 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private void btParticipantesActionPerformed(java.awt.event.ActionEvent evt) {                                                
 
         new VistaParticipantes().setVisible(true);
+        this.dispose();
     }                                               
 
     private void btResultadosActionPerformed(java.awt.event.ActionEvent evt) {                                             
       
         new VistaResultados().setVisible(true);
+        this.dispose();
     }                                            
 
     private void btPartidosActionPerformed(java.awt.event.ActionEvent evt) {                                           
       
         new VistaPartidos().setVisible(true);
+        this.dispose();
     }                                          
 
     private void btnEventosActionPerformed(java.awt.event.ActionEvent evt) {                                           

@@ -1,3 +1,6 @@
+
+
+
 package paquete.modelo;
 
 public class GrafoEquipos {
@@ -11,6 +14,10 @@ public class GrafoEquipos {
     }
 
     public void agregarEquipo(Equipo e) {
+        if (existeEquipo(e.getIdEquipo())) {
+            return;
+        }
+
         Object[] vertice = new Object[2];
         vertice[0] = e;
         vertice[1] = null;
@@ -34,7 +41,12 @@ public class GrafoEquipos {
 
             actual = actual.getSiguiente();
         }
+
         return null;
+    }
+
+    public boolean existeEquipo(int idEquipo) {
+        return buscarVertice(idEquipo) != null;
     }
 
     public void conectarEquipos(Equipo A, Equipo B) {
@@ -94,7 +106,9 @@ public class GrafoEquipos {
 
     public void dibujarGrafo(javax.swing.JPanel panel) {
 
-        if (estaVacia()) return;
+        if (estaVacia()) {
+            return;
+        }
 
         java.awt.Graphics g = panel.getGraphics();
 

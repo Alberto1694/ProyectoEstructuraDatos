@@ -5,6 +5,7 @@ paquete\controlador\ControladorPartido.class
 paquete\vista\VistaParticipantes.class
 paquete\modelo\Evento.class
 paquete\modelo\NodoDoble.class
+paquete\vista\VistaClasificacionEspec.class
 paquete\vista\VistaEventos.class
 paquete\vista\VistaPartidos.class
 paquete\vista\VistaEspectador.class
@@ -15,6 +16,7 @@ paquete\modelo\Nodo.class
 paquete\modelo\Participante.class
 paquete\vista\VistaClasificacion.class
 paquete\modelo\ListaParticipantes.class
+paquete\vista\VistaResultadosEspec.class
 paquete\modelo\ArbolClasificacion$NodoClasificacion.class
 paquete\modelo\GrafoEquipos.class
 paquete\controlador\ControladorEvento.class
@@ -25,4 +27,5 @@ paquete\modelo\Sistema.class
 paquete\vista\VistaMenuAdmin.class
 paquete\vista\VistaResultados.class
 paquete\modelo\Partido.class
+paquete\vista\VistaPartidosEspec.class
 paquete\modelo\ListaEventos.class

@@ -2,7 +2,7 @@ package paquete.vista;
 
 public class VistaEspectador extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEspectador.class.getName());
+   
 
     public VistaEspectador() {
         initComponents();
@@ -52,7 +52,6 @@ public class VistaEspectador extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Bienvenido:");
 
         jToggleButton1.setBackground(new java.awt.Color(0, 102, 204));
@@ -63,10 +62,12 @@ public class VistaEspectador extends javax.swing.JFrame {
         jToggleButton2.setBackground(new java.awt.Color(0, 102, 204));
         jToggleButton2.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton2.setText("Ver Resultados");
+        jToggleButton2.addActionListener(this::jToggleButton2ActionPerformed);
 
         jToggleButton3.setBackground(new java.awt.Color(0, 102, 204));
         jToggleButton3.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton3.setText("Ver Clasificacion");
+        jToggleButton3.addActionListener(this::jToggleButton3ActionPerformed);
 
         btCerrar.setBackground(new java.awt.Color(255, 0, 0));
         btCerrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,7 +93,7 @@ public class VistaEspectador extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(161, 161, 161)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -129,12 +130,25 @@ public class VistaEspectador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-     
+        new VistaPartidos().setVisible(true);
+        this.dispose();     
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
-
+        System.exit(0);
     }//GEN-LAST:event_btCerrarActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        new VistaResultados().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
+        new VistaClasificacion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VistaEspectador().setVisible(true));

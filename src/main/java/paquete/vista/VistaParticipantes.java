@@ -10,7 +10,7 @@ import paquete.modelo.Equipo;
 public class VistaParticipantes extends javax.swing.JFrame {
     private ControladorParticipante controlador;
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaParticipantes.class.getName());
+   
     
     public VistaParticipantes() {
     initComponents();
@@ -228,24 +228,81 @@ public class VistaParticipantes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nombreParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreParticipanteActionPerformed
+        String nombre = nombreParticipante.getText();
+    
+        String edadTexto = edadParticipante.getText();
+        String nombreEquipo = equipoParticipante.getText();
+
+        if (nombre.isEmpty() || edadTexto.isEmpty() || nombreEquipo.isEmpty()) {
+            System.out.println("Debe llenar todos los campos");
+            return;
+        }
+
+        try {
+             int edad = Integer.parseInt(edadTexto);
+
         
+             Equipo equipo = new Equipo();
+             equipo.setIdEquipo(controlador.generarIdEquipo());
+             equipo.setNombreEquipo(nombreEquipo);
+
+            Participante p = new Participante();
+            p.setNombre(nombre);
+            p.setEdad(edad);
+            p.setEquipo(equipo);
+
+            controlador.agregarParticipante(p);
+
+            mostrarParticipantes();
+
+            nombreParticipante.setText("");
+            edadParticipante.setText("");
+            equipoParticipante.setText("");
+
+            System.out.println("Participante agregado");
+
+        } catch (NumberFormatException e) {
+                System.out.println("La edad debe ser un numero");
+        }
     }//GEN-LAST:event_nombreParticipanteActionPerformed
 
     private void btnAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipanteActionPerformed
-    String nombre = nombreParticipante.getText();
-    int edad = Integer.parseInt(edadParticipante.getText());
-    String nombreEquipo = equipoParticipante.getText();
+        String nombre = nombreParticipante.getText();
+        String edadTexto = edadParticipante.getText();
+        String nombreEquipo = equipoParticipante.getText();
 
-    Equipo equipo = new Equipo();
-    equipo.setNombreEquipo(nombreEquipo);
+        if (nombre.isEmpty() || edadTexto.isEmpty() || nombreEquipo.isEmpty()) {
+           System.out.println("Debe llenar todos los campos");
+        return;
+        }
 
-    Participante p = new Participante();
-    p.setNombre(nombre);
-    p.setEdad(edad);
-    p.setEquipo(equipo);
-    controlador.agregarParticipante(p);
+        try {
+            int edad = Integer.parseInt(edadTexto);
 
-    mostrarParticipantes();
+        
+            Equipo equipo = new Equipo();
+            equipo.setIdEquipo(controlador.generarIdEquipo());
+            equipo.setNombreEquipo(nombreEquipo);
+
+            Participante p = new Participante();
+            p.setNombre(nombre);
+            p.setEdad(edad);
+            p.setEquipo(equipo);
+
+            controlador.agregarParticipante(p);
+
+            mostrarParticipantes();
+
+            nombreParticipante.setText("");
+            edadParticipante.setText("");
+            equipoParticipante.setText("");
+
+            System.out.println("Participante agregado");
+
+        } catch (NumberFormatException e) {
+            System.out.println("La edad debe ser un numero");
+        }
+
 
     }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
 
@@ -263,7 +320,8 @@ public class VistaParticipantes extends javax.swing.JFrame {
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
       
-        new VistaPrincipal().setVisible(true);
+        new VistaMenuAdmin().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     private void equipoParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipoParticipanteActionPerformed

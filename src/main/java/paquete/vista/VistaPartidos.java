@@ -12,8 +12,7 @@ import paquete.modelo.Participante;
 public class VistaPartidos extends javax.swing.JFrame {
     private ControladorPartido controlador;
     private ControladorParticipante controladorParticipante; 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaPartidos.class.getName());
-    
+       
     public VistaPartidos() {
         initComponents();
         controlador = new ControladorPartido();
@@ -301,7 +300,8 @@ public class VistaPartidos extends javax.swing.JFrame {
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         
-        new VistaPrincipal().setVisible(true);  
+        new VistaMenuAdmin().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     private void BtnJugarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJugarPartidoActionPerformed

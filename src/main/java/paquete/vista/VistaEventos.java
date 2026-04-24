@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class VistaEventos extends javax.swing.JFrame {
 private ControladorEvento controlador;    
-   private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEventos.class.getName());
+   
 
 
 public VistaEventos() {
@@ -294,7 +294,7 @@ public VistaEventos() {
     }//GEN-LAST:event_btnAgregarEventoActionPerformed
 
     private void btnActualizarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEventoActionPerformed
-     
+
     }//GEN-LAST:event_btnActualizarEventoActionPerformed
 
     private void btnEliminarEvento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvento1ActionPerformed
@@ -319,7 +319,7 @@ public VistaEventos() {
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         
-        new VistaPrincipal().setVisible(true); 
+        new VistaMenuAdmin().setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
 

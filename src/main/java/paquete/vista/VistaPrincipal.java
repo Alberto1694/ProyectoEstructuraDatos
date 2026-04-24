@@ -2,7 +2,7 @@ package paquete.vista;
 
 public class VistaPrincipal extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaPrincipal.class.getName());
+    
     
     public VistaPrincipal() {
         initComponents();

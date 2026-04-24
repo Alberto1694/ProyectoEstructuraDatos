@@ -36,27 +36,21 @@ public class ControladorPartido {
     public void agregarPartido(Partido p) {
         cola.encolar(p);
 
-        Equipo local = new Equipo();
-        local.setIdEquipo(p.getEquipoLocal().hashCode());
-        local.setNombreEquipo(p.getEquipoLocal());
+        conectarGrafo(p);
 
-        Equipo visitante = new Equipo();
-        visitante.setIdEquipo(p.getEquipoVisitante().hashCode());
-        visitante.setNombreEquipo(p.getEquipoVisitante());
+        ControladorEvento ce = new ControladorEvento();
+        paquete.modelo.Evento evento = ce.buscarEvento(
+            ProyectoEstructuraDatos.idEventoActual
+        );
 
-        if (!ProyectoEstructuraDatos.grafo.existeEquipo(local.getIdEquipo())) {
-            ProyectoEstructuraDatos.grafo.agregarEquipo(local);
+        if (evento != null) {
+           evento.getColaPartidos().encolar(p);
+           ce.guardarCambios();
         }
 
-        if (!ProyectoEstructuraDatos.grafo.existeEquipo(visitante.getIdEquipo())) {
-            ProyectoEstructuraDatos.grafo.agregarEquipo(visitante);
-        }
+         guardarEnArchivo();
 
-        ProyectoEstructuraDatos.grafo.conectarEquipos(local, visitante);
-
-        guardarEnArchivo();
-
-        System.out.println("Guardado: " + p.getEquipoLocal() + " vs " + p.getEquipoVisitante());
+         System.out.println("Guardado: " + p.getEquipoLocal() + " vs " + p.getEquipoVisitante());
     }
 
     public Nodo getPartidos() {
@@ -80,8 +74,23 @@ public class ControladorPartido {
     }
 
     public void registrarResultado(Partido p) {
+
+    // guarda en la pila normal 
         pilaResultados.apilar(p);
         guardarResultados();
+
+    // guarda dentro del evento
+        ControladorEvento ce = new ControladorEvento();
+        paquete.modelo.Evento evento = ce.buscarEvento(
+            ProyectoEstructuraDatos.idEventoActual
+        );
+
+        if (evento != null) {
+            evento.getPilaResultados().apilar(p);
+            ce.guardarCambios();
+        }
+
+        System.out.println("Resultado guardado en evento");
     }
 
     private void guardarEnArchivo() {

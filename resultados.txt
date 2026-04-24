@@ -1,2 +1,6 @@
-Liga,Saprisa,1,1
+Madrid,Madrid,0,0
+Madrid,Madrid,0,0
+Liga,Saprisa,0,0
+Madrid,barcelona,0,0
 Madrid,barcelona,2,0
+Liga,Saprisa,1,1

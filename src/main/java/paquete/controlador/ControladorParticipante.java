@@ -4,11 +4,13 @@
  */
 package paquete.controlador;
 
+import com.mycompany.proyectoestructuradatos.ProyectoEstructuraDatos;
 import paquete.modelo.ListaParticipantes;
 import paquete.modelo.NodoDoble;
 import paquete.modelo.Participante;
 import paquete.modelo.Equipo;
 import java.io.*;
+import paquete.modelo.Evento;
 
 public class ControladorParticipante {
 
@@ -22,9 +24,21 @@ public class ControladorParticipante {
         }
     }
 
-    public void agregarParticipante(Participante p) {
+    public void agregarParticipante(Participante p) { // agrega los participantes, tambein hace una gestion para agreagrlo por el evento
+        
         lista.insertar(p);
         guardarEnArchivo();
+        
+        ControladorEvento ce = new ControladorEvento();
+        Evento evento = ce.buscarEvento(ProyectoEstructuraDatos.idEventoActual);
+        
+        if (evento!= null){
+            evento.getListaParticipantes().insertar(p);
+            ce.guardarCambios();
+            
+            
+        }
+        
     }
 
     public NodoDoble getParticipantes() {
@@ -133,4 +147,18 @@ public class ControladorParticipante {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
